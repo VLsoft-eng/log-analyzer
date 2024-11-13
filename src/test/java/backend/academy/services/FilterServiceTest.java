@@ -43,7 +43,7 @@ public class FilterServiceTest {
         when(logRecord2.timeLocal()).thenReturn(ZonedDateTime.now().minusHours(2));
         Stream<LogRecord> logRecords = Stream.of(logRecord1, logRecord2);
 
-        Stream<LogRecord> filtered = filterService.filterByStartTime(startTime, logRecords);
+        Stream<LogRecord> filtered = filterService.filterByEndTime(startTime, logRecords);
 
         assertEquals(1, filtered.count());
     }
