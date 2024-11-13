@@ -1,10 +1,10 @@
 package backend.academy.parsers;
 
 import backend.academy.records.LogRecord;
+import java.time.ZonedDateTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.time.ZonedDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LogParserTest {

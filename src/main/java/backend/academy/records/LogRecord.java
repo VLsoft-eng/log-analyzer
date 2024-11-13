@@ -14,6 +14,9 @@ public record LogRecord(
     String httpReferer,
     String httpUserAgent
 ) {
+    private final static String UNKNOWN = "unknown";
+    private final static String WHITESPACE_REGEX = "\\s+";
+
     public String resource() {
         return parseRequestForResource(request);
     }
@@ -23,12 +26,12 @@ public record LogRecord(
     }
 
     private String parseRequestForMethod(String request) {
-        String[] parts = request.trim().split("\\s+");
-        return parts.length > 1 ? parts[0] : "unknown";
+        String[] parts = request.trim().split(WHITESPACE_REGEX);
+        return parts.length > 1 ? parts[0] : UNKNOWN;
     }
 
     private String parseRequestForResource(String request) {
-        String[] parts = request.trim().split("\\s+");
-        return parts.length > 1 ? parts[1] : "unknown";
+        String[] parts = request.trim().split(WHITESPACE_REGEX);
+        return parts.length > 1 ? parts[1] : UNKNOWN;
     }
 }

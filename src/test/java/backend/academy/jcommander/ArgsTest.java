@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ArgsTest {
+
     @DisplayName("Test parsing args in args class for jcommander")
     @Test
     public void ArgsParsingTest() {
@@ -53,5 +54,4 @@ public class ArgsTest {
         assertTrue(argsObj.getTo().isEmpty());
         assertTrue(argsObj.getFilterValue().isEmpty());
     }
-
 }
