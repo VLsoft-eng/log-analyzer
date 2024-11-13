@@ -18,6 +18,15 @@ public record LogRecord(
         return parseRequestForResource(request);
     }
 
+    public String method() {
+        return parseRequestForMethod(request);
+    }
+
+    private String parseRequestForMethod(String request) {
+        String[] parts = request.trim().split("\\s+");
+        return parts.length > 1 ? parts[0] : "unknown";
+    }
+
     private String parseRequestForResource(String request) {
         String[] parts = request.trim().split("\\s+");
         return parts.length > 1 ? parts[1] : "unknown";

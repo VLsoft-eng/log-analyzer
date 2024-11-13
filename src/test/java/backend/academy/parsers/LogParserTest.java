@@ -30,7 +30,8 @@ public class LogParserTest {
                 () -> assertEquals(0, logRecord.bodyBytesSent()),
                 () -> assertEquals("-", logRecord.httpReferer()),
                 () -> assertEquals("Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.21)", logRecord.httpUserAgent()),
-                () -> assertEquals("/downloads/product_1", logRecord.resource())
+                () -> assertEquals("/downloads/product_1", logRecord.resource()),
+                () -> assertEquals("GET", logRecord.method())
             );
         });
     }
