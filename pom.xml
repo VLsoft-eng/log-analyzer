@@ -234,6 +234,16 @@
             <version>4.5.13</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.datadoghq</groupId>
+            <artifactId>sketches-java</artifactId>
+            <version>0.8.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zetasketch</groupId>
+            <artifactId>zetasketch</artifactId>
+            <version>0.1.0</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -422,6 +432,11 @@
                 <version>${rest-assured.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.datadoghq</groupId>
+                <artifactId>sketches-java</artifactId>
+                <version>0.8.3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
