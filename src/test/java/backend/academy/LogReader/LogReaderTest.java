@@ -3,9 +3,10 @@ package backend.academy.LogReader;
 import backend.academy.logReaders.LogReaderChainFactory;
 import backend.academy.logReaders.abstractions.LogReader;
 import backend.academy.logReaders.implementations.LocalLogReader;
+import backend.academy.logReaders.implementations.UrlLogReader;
+import backend.academy.records.LineRecord;
 import java.util.Optional;
 import java.util.stream.Stream;
-import backend.academy.logReaders.implementations.UrlLogReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,9 +19,10 @@ public class LogReaderTest {
         LogReader reader = new LocalLogReader();
         String path = "*/**/logs/*";
 
-        Optional<Stream<String>> stringStream = reader.getLogLines(path);
+        Optional<Stream<LineRecord>> stringStream = reader.getLogLines(path);
 
         assertTrue(stringStream.isPresent());
+        assertTrue(stringStream.orElseThrow().findAny().isPresent());
     }
 
     @DisplayName("Url Log Reader Test with valid url")
@@ -31,9 +33,10 @@ public class LogReaderTest {
             "elastic/examples/master/Common%20Data%20Formats/" +
             "nginx_logs/nginx_logs";
 
-        Optional<Stream<String>> stringStream = reader.getLogLines(path);
+        Optional<Stream<LineRecord>> stringStream = reader.getLogLines(path);
 
         assertTrue(stringStream.isPresent());
+        assertTrue(stringStream.orElseThrow().findAny().isPresent());
     }
 
     @DisplayName("Url Log Reader Test with invalid url")
@@ -44,7 +47,7 @@ public class LogReaderTest {
             "elastic/examples/master/Common%20Data%20Formats/" +
             "nginx_logs/nginx_logs";
 
-        Optional<Stream<String>> stringStream = reader.getLogLines(path);
+        Optional<Stream<LineRecord>> stringStream = reader.getLogLines(path);
 
         assertTrue(stringStream.isEmpty());
     }
@@ -57,19 +60,21 @@ public class LogReaderTest {
             "elastic/examples/master/Common%20Data%20Formats/" +
             "nginx_logs/nginx_logs";
 
-        Optional<Stream<String>> stringStream = reader.getLogLines(path);
+        Optional<Stream<LineRecord>> stringStream = reader.getLogLines(path);
+
         assertTrue(stringStream.isPresent());
+        assertTrue(stringStream.orElseThrow().findAny().isPresent());
     }
 
     @DisplayName("Log reader chain test when path is glob pattern")
     @Test
     public void logReaderChainGlobPathTest() {
         LogReader reader = LogReaderChainFactory.getLogReaderChain();
-        String path = "https://raw.githubusercontent.com/" +
-            "elastic/examples/master/Common%20Data%20Formats/" +
-            "nginx_logs/nginx_logs";
+        String path = "*/**/logs/*";
 
-        Optional<Stream<String>> stringStream = reader.getLogLines(path);
+        Optional<Stream<LineRecord>> stringStream = reader.getLogLines(path);
+
         assertTrue(stringStream.isPresent());
+        assertTrue(stringStream.orElseThrow().findAny().isPresent());
     }
 }

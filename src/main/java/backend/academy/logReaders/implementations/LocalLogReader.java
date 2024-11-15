@@ -1,7 +1,9 @@
 package backend.academy.logReaders.implementations;
 
 import backend.academy.logReaders.abstractions.LogReader;
+import backend.academy.records.LineRecord;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,19 +17,18 @@ public class LocalLogReader implements LogReader {
     private LogReader nextLogReader;
 
     @Override
-    public Optional<Stream<String>> getLogLines(String path) {
+    public Optional<Stream<LineRecord>> getLogLines(String path) {
         try {
             PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:" + path);
             Path startPath = Paths.get(System.getProperty("user.dir"));
 
-            try (Stream<Path> matchedPaths = Files.walk(startPath)) {
-                Stream<String> lines = matchedPaths
-                    .filter(Files::isRegularFile)
-                    .filter(pathMatcher::matches)
-                    .flatMap(this::processFile);
+            Stream<Path> matchedPaths = Files.walk(startPath);
+            Stream<LineRecord> lines = matchedPaths
+                .filter(Files::isRegularFile)
+                .filter(pathMatcher::matches)
+                .flatMap(this::processFile);
 
-                return  Optional.of(lines);
-            }
+            return Optional.of(lines);
         } catch (IOException e) {
             return handleNextLogReader(path);
         }
@@ -38,7 +39,7 @@ public class LocalLogReader implements LogReader {
         this.nextLogReader = reader;
     }
 
-    private Optional<Stream<String>> handleNextLogReader(String path) {
+    private Optional<Stream<LineRecord>> handleNextLogReader(String path) {
         if (nextLogReader != null) {
             return nextLogReader.getLogLines(path);
         } else {
@@ -46,9 +47,11 @@ public class LocalLogReader implements LogReader {
         }
     }
 
-    private Stream<String> processFile(Path file) {
+    private Stream<LineRecord> processFile(Path file) {
         try {
-            return Files.lines(file);
+            String filename = file.getFileName().toString();
+            return Files.lines(file, StandardCharsets.UTF_8)
+                .map(line -> new LineRecord(filename, line));
         } catch (IOException e) {
             return Stream.empty();
         }
