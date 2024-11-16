@@ -1,6 +1,6 @@
 package backend.academy.LogReader;
 
-import backend.academy.utilities.logReaders.LogReaderChainFactory;
+import backend.academy.utilities.logReaders.factory.LogReaderChainFactory;
 import backend.academy.utilities.logReaders.abstractions.LogReader;
 import backend.academy.utilities.logReaders.implementations.LocalLogReader;
 import backend.academy.utilities.logReaders.implementations.UrlLogReader;

@@ -1,4 +1,4 @@
-package backend.academy.utilities.logReaders;
+package backend.academy.utilities.logReaders.factory;
 
 import backend.academy.enums.LogReaderType;
 import backend.academy.utilities.logReaders.abstractions.LogReader;
