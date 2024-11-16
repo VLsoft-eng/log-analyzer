@@ -44,7 +44,7 @@ public class UrlLogReader implements LogReader {
                 Stream<String> stringStream = getStringStream(inputStream);
                 String resourceName = getResourceNameFromUrl(url);
 
-                Stream<LineRecord> lineRecordStream = stringStream.map(line -> new LineRecord(line, resourceName));
+                Stream<LineRecord> lineRecordStream = stringStream.map(line -> new LineRecord(resourceName, line));
                 return Optional.of(lineRecordStream.onClose(() -> closeStream(inputStream)));
             }
         } catch (IOException | InterruptedException e) {
