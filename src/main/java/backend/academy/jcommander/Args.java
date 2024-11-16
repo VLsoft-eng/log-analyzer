@@ -1,5 +1,6 @@
 package backend.academy.jcommander;
 
+import backend.academy.enums.FilterField;
 import backend.academy.enums.ReportFormat;
 import com.beust.jcommander.Parameter;
 import java.time.ZonedDateTime;
@@ -24,6 +25,9 @@ public class Args {
     @Parameter(names = "--filter-value", description = "Filter value for filtering logs")
     public String filterValue;
 
+    @Parameter(names = "--filter-field",converter = FilterFieldConverter.class, description = "Filter field for filtering")
+    public FilterField filterField;
+
     public Optional<ZonedDateTime> getFrom() {
         return Optional.ofNullable(from);
     }
@@ -34,5 +38,9 @@ public class Args {
 
     public Optional<String> getFilterValue() {
         return Optional.ofNullable(filterValue);
+    }
+
+    public Optional<FilterField> getFilterField() {
+        return Optional.ofNullable(filterField);
     }
 }

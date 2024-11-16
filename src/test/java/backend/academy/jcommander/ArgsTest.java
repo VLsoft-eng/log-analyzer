@@ -1,5 +1,6 @@
 package backend.academy.jcommander;
 
+import backend.academy.enums.FilterField;
 import backend.academy.enums.ReportFormat;
 import com.beust.jcommander.JCommander;
 import java.time.ZonedDateTime;
@@ -19,7 +20,8 @@ public class ArgsTest {
             "--format", "markdown",
             "--from", "2024-11-01T10:00:00",
             "--to", "2024-11-10T10:00:00",
-            "--filter-value", "404"
+            "--filter-value", "404",
+            "--filter-field", "user",
         };
 
         Args argsObj = new Args();
@@ -35,6 +37,7 @@ public class ArgsTest {
         assertEquals(ZonedDateTime.parse("2024-11-10T10:00:00+00:00", DateTimeFormatter.ISO_ZONED_DATE_TIME),
             argsObj.to);
         assertEquals("404", argsObj.filterValue);
+        assertEquals(FilterField.USER, argsObj.filterField);
     }
 
     @DisplayName("Args optional fields test. Must be empty if not provided.")
@@ -53,5 +56,6 @@ public class ArgsTest {
         assertTrue(argsObj.getFrom().isEmpty());
         assertTrue(argsObj.getTo().isEmpty());
         assertTrue(argsObj.getFilterValue().isEmpty());
+        assertTrue(argsObj.getFilterField().isEmpty());
     }
 }
