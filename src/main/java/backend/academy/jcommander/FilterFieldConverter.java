@@ -10,7 +10,7 @@ public class FilterFieldConverter implements IStringConverter<FilterField> {
         try {
             return FilterField.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new ParameterException("Invalid filter field: " + value);
+            throw new ParameterException("Invalid filter field: " + value, e);
         }
     }
 }

@@ -25,7 +25,8 @@ public class Args {
     @Parameter(names = "--filter-value", description = "Filter value for filtering logs")
     public String filterValue;
 
-    @Parameter(names = "--filter-field",converter = FilterFieldConverter.class, description = "Filter field for filtering")
+    @Parameter(names = "--filter-field", converter = FilterFieldConverter.class,
+        description = "Filter field for filtering")
     public FilterField filterField;
 
     public Optional<ZonedDateTime> getFrom() {

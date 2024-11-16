@@ -10,7 +10,7 @@ public class ReportFormatConverter implements IStringConverter<ReportFormat> {
         try {
             return ReportFormat.valueOf(value.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new ParameterException("Invalid report format: " + value,e);
+            throw new ParameterException("Invalid report format: " + value, e);
         }
     }
 }

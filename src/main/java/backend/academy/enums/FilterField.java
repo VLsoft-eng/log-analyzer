@@ -4,5 +4,7 @@ public enum FilterField {
     ADDRESS,
     USER,
     REFERER,
-    AGENT
+    AGENT,
+    METHOD,
+
 }
