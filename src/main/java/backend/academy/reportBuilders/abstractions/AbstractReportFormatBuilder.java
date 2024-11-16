@@ -94,7 +94,7 @@ public abstract class AbstractReportFormatBuilder {
         metrics.put("Конечная дата", endDate != null ? endDate : "-");
     }
 
-    public void addRequestsCount(int requestsCount) {
+    public void addRequestsCount(long requestsCount) {
         metrics.put("Количество запросов", String.valueOf(requestsCount));
     }
 

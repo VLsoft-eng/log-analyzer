@@ -10,7 +10,7 @@ public interface ReportFormatBuilder {
 
     void addEndDate(String endDate);
 
-    void addRequestsCount(int requestsCount);
+    void addRequestsCount(long requestsCount);
 
     void addUniqueIpsCount(long responsesCount);
 

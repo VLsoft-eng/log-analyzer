@@ -17,26 +17,28 @@ public class AsciiDocReportFormatBuilder extends AbstractReportFormatBuilder imp
 
     private static final String PIPE_TABLE_SEPARATOR = "|===\n";
     private static final String PIPE = " | ";
+    private static final String PIPE_WITHOUT_START_WHITESPACE = "| ";
 
     @Override
     public void addRequestedResourcesStatistics(Map<String, Long> statistics) {
         requestedResources.add(RESOURCE_TABLE_HEADER);
         statistics.forEach((resource, count) ->
-            requestedResources.add(PIPE + resource + PIPE + count + "\n"));
+            requestedResources.add(PIPE_WITHOUT_START_WHITESPACE + resource + PIPE + count + "\n"));
     }
 
     @Override
     public void addResponsesCodesStatistics(Map<Integer, Long> statistics) {
         responseCodes.add(RESPONSE_CODE_TABLE_HEADER);
         statistics.forEach((code, count) ->
-            responseCodes.add(PIPE + code + PIPE + HTTP_STATUS_DESCRIPTIONS.get(code) + PIPE + count + "\n"));
+            responseCodes.add(PIPE_WITHOUT_START_WHITESPACE + code + PIPE
+                + HTTP_STATUS_DESCRIPTIONS.get(code) + PIPE + count + "\n"));
     }
 
     @Override
     public void addRequestsMethodsStatistics(Map<String, Long> statistics) {
         requestMethods.add(REQUEST_METHOD_TABLE_HEADER);
         statistics.forEach((method, count) ->
-            requestMethods.add(PIPE + method + PIPE + count + "\n"));
+            requestMethods.add(PIPE_WITHOUT_START_WHITESPACE + method + PIPE + count + "\n"));
     }
 
     @Override
@@ -44,9 +46,11 @@ public class AsciiDocReportFormatBuilder extends AbstractReportFormatBuilder imp
         stringBuilder.append("== Общие сведения\n\n");
         stringBuilder.append(COMMON_TABLE_HEADER);
         metrics.forEach(
-            (key, value) -> stringBuilder.append(PIPE).append(key).append(PIPE).append(value)
-                .append('\n')
-                .append(PIPE_TABLE_SEPARATOR));
+            (key, value) -> stringBuilder.append(PIPE_WITHOUT_START_WHITESPACE)
+                .append(key).append(PIPE)
+                .append(value)
+                .append('\n'));
+        stringBuilder.append(RESPONSE_CODE_TABLE_HEADER);
 
         appendSection(stringBuilder, "Запрашиваемые ресурсы", requestedResources);
         appendSection(stringBuilder, "Коды ответа", responseCodes);
