@@ -1,5 +1,6 @@
 package backend.academy.services;
 
+import backend.academy.enums.FilterField;
 import backend.academy.records.LogRecord;
 import java.time.ZonedDateTime;
 import java.util.stream.Stream;
@@ -48,16 +49,33 @@ public class FilterServiceTest {
         assertEquals(1, filtered.count());
     }
 
-    @DisplayName("Filter by value test")
+    @DisplayName("Filter by agent test")
     @Test
-    public void filterByValueTest() {
-        String string1 = "test";
-        String string2 = "deploy";
-        String filterValue = "t.st";
-        Stream<String> stringStream = Stream.of(string1, string2);
+    public void filterByAgentTest() {
+        LogRecord logRecord1 = mock(LogRecord.class);
+        LogRecord logRecord2 = mock(LogRecord.class);
+        when(logRecord1.httpUserAgent()).thenReturn("Opera");
+        when(logRecord2.httpUserAgent()).thenReturn("Mozilla");
+        Stream<LogRecord> logRecords = Stream.of(logRecord1, logRecord2);
+        FilterField filterField = FilterField.AGENT;
+        String filterValue = "Opera";
 
-        Stream<String> filtered = filterService.filterByValue(filterValue, stringStream);
+        Stream<LogRecord> filtered = filterService.filterByValue(filterValue, filterField, logRecords);
+        assertEquals(1, filtered.count());
+    }
 
+    @DisplayName("Filter by user test")
+    @Test
+    public void filterByUserTest() {
+        LogRecord logRecord1 = mock(LogRecord.class);
+        LogRecord logRecord2 = mock(LogRecord.class);
+        when(logRecord1.remoteUser()).thenReturn("-");
+        when(logRecord2.remoteUser()).thenReturn("User");
+        Stream<LogRecord> logRecords = Stream.of(logRecord1, logRecord2);
+        FilterField filterField = FilterField.USER;
+        String filterValue = "User";
+
+        Stream<LogRecord> filtered = filterService.filterByValue(filterValue, filterField, logRecords);
         assertEquals(1, filtered.count());
     }
 }
