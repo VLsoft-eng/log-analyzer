@@ -1,4 +1,4 @@
-package backend.academy.logReaders.abstractions;
+package backend.academy.utilities.logReaders.abstractions;
 
 import backend.academy.records.LineRecord;
 import java.util.Optional;

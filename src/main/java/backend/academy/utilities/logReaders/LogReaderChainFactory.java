@@ -1,7 +1,7 @@
-package backend.academy.logReaders;
+package backend.academy.utilities.logReaders;
 
 import backend.academy.enums.LogReaderType;
-import backend.academy.logReaders.abstractions.LogReader;
+import backend.academy.utilities.logReaders.abstractions.LogReader;
 import java.util.List;
 
 public final class LogReaderChainFactory {

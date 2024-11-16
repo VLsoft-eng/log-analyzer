@@ -2,6 +2,8 @@ package backend.academy.parsers;
 
 import backend.academy.records.LogRecord;
 import java.time.ZonedDateTime;
+
+import backend.academy.utilities.parsers.NginxLogParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

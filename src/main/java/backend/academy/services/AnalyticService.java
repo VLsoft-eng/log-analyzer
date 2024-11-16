@@ -2,7 +2,7 @@ package backend.academy.services;
 
 import backend.academy.records.LogRecord;
 import backend.academy.records.ReportRecord;
-import backend.academy.statisticsUtilities.LogStatisticsAccumulator;
+import backend.academy.utilities.statisticsUtilities.LogStatisticsAccumulator;
 import java.util.stream.Stream;
 
 public class AnalyticService {

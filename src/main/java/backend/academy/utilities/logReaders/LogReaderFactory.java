@@ -1,9 +1,9 @@
-package backend.academy.logReaders;
+package backend.academy.utilities.logReaders;
 
 import backend.academy.enums.LogReaderType;
-import backend.academy.logReaders.abstractions.LogReader;
-import backend.academy.logReaders.implementations.LocalLogReader;
-import backend.academy.logReaders.implementations.UrlLogReader;
+import backend.academy.utilities.logReaders.abstractions.LogReader;
+import backend.academy.utilities.logReaders.implementations.LocalLogReader;
+import backend.academy.utilities.logReaders.implementations.UrlLogReader;
 import java.util.Map;
 
 public final class LogReaderFactory {

@@ -1,7 +1,7 @@
 package backend.academy.statisticUtils;
 
 import backend.academy.records.LogRecord;
-import backend.academy.statisticsUtilities.LogStatisticsAccumulator;
+import backend.academy.utilities.statisticsUtilities.LogStatisticsAccumulator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

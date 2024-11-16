@@ -1,6 +1,6 @@
 package backend.academy.reportBuilders;
 
-import backend.academy.reportBuilders.implementations.MarkdownReportFormatBuilder;
+import backend.academy.utilities.reportBuilders.implementations.MarkdownReportFormatBuilder;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;

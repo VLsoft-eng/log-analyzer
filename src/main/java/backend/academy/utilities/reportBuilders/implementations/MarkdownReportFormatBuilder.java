@@ -1,7 +1,7 @@
-package backend.academy.reportBuilders.implementations;
+package backend.academy.utilities.reportBuilders.implementations;
 
-import backend.academy.reportBuilders.abstractions.AbstractReportFormatBuilder;
-import backend.academy.reportBuilders.abstractions.ReportFormatBuilder;
+import backend.academy.utilities.reportBuilders.abstractions.AbstractReportFormatBuilder;
+import backend.academy.utilities.reportBuilders.abstractions.ReportFormatBuilder;
 import java.util.List;
 import java.util.Map;
 

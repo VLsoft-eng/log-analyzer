@@ -1,4 +1,4 @@
-package backend.academy.parsers;
+package backend.academy.utilities.parsers;
 
 import backend.academy.records.LogRecord;
 import java.time.ZonedDateTime;

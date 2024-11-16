@@ -1,4 +1,4 @@
-package backend.academy.reportBuilders.abstractions;
+package backend.academy.utilities.reportBuilders.abstractions;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

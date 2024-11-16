@@ -1,9 +1,9 @@
 package backend.academy.LogReader;
 
-import backend.academy.logReaders.LogReaderChainFactory;
-import backend.academy.logReaders.abstractions.LogReader;
-import backend.academy.logReaders.implementations.LocalLogReader;
-import backend.academy.logReaders.implementations.UrlLogReader;
+import backend.academy.utilities.logReaders.LogReaderChainFactory;
+import backend.academy.utilities.logReaders.abstractions.LogReader;
+import backend.academy.utilities.logReaders.implementations.LocalLogReader;
+import backend.academy.utilities.logReaders.implementations.UrlLogReader;
 import backend.academy.records.LineRecord;
 import java.util.Optional;
 import java.util.stream.Stream;
