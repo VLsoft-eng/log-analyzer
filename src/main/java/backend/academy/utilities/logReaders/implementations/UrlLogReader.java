@@ -1,7 +1,7 @@
 package backend.academy.utilities.logReaders.implementations;
 
-import backend.academy.utilities.logReaders.abstractions.LogReader;
 import backend.academy.records.LineRecord;
+import backend.academy.utilities.logReaders.abstractions.LogReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
