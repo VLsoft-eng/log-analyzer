@@ -3,6 +3,7 @@ package backend.academy.utilities.statisticsUtilities;
 import backend.academy.records.LogRecord;
 import com.datadoghq.sketch.ddsketch.DDSketch;
 import com.google.zetasketch.HyperLogLogPlusPlus;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -75,7 +76,7 @@ public class LogStatisticsAccumulator {
     public Map<String, Long> getRequestResourcesStatistics() {
         return requestedResourcesCount
             .entrySet().stream()
-            .sorted(Map.Entry.comparingByValue())
+            .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
             .limit(RESOURCES_LIMIT)
             .collect(Collectors.toMap(
                 Map.Entry::getKey,
@@ -88,7 +89,7 @@ public class LogStatisticsAccumulator {
     public Map<Integer, Long> getResponseCodesStatistics() {
         return responseCodesCount
             .entrySet().stream()
-            .sorted(Map.Entry.comparingByValue())
+            .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
             .limit(RESPONSE_CODES_LIMIT)
             .collect(Collectors.toMap(
                 Map.Entry::getKey,
@@ -101,7 +102,7 @@ public class LogStatisticsAccumulator {
     public Map<String, Long> getRequestMethodsStatistics() {
         return methodRequestsCount
             .entrySet().stream()
-            .sorted(Map.Entry.comparingByValue())
+            .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
             .limit(REQUESTS_METHODS_LIMIT)
             .collect(Collectors.toMap(
                 Map.Entry::getKey,
