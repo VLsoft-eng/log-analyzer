@@ -1,4 +1,4 @@
-package backend.academy.statisticsUtilities;
+package backend.academy.utilities.statisticsUtilities;
 
 import backend.academy.records.LogRecord;
 import com.datadoghq.sketch.ddsketch.DDSketch;
@@ -65,7 +65,7 @@ public class LogStatisticsAccumulator {
     }
 
     public double getPercentile() {
-        return percentileSketch.getValueAtQuantile(QUANTILE);
+        return !percentileSketch.isEmpty() ? percentileSketch.getValueAtQuantile(QUANTILE) : 0.0;
     }
 
     public long getUniqueIpsCount() {
@@ -112,6 +112,6 @@ public class LogStatisticsAccumulator {
     }
 
     public double getAverageResponsesSize() {
-        return totalResponsesSize / requestsCount;
+        return !(requestsCount == 0) ? totalResponsesSize / requestsCount : 0.0;
     }
 }
