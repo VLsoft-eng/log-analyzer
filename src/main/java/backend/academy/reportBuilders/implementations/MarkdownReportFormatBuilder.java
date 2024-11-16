@@ -2,12 +2,8 @@ package backend.academy.reportBuilders.implementations;
 
 import backend.academy.reportBuilders.abstractions.AbstractReportFormatBuilder;
 import backend.academy.reportBuilders.abstractions.ReportFormatBuilder;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class MarkdownReportFormatBuilder extends AbstractReportFormatBuilder implements ReportFormatBuilder {
     private static final String COMMON_TABLE_HEADER =
@@ -20,50 +16,6 @@ public class MarkdownReportFormatBuilder extends AbstractReportFormatBuilder imp
         "| **Метод** | **Количество** |\n|:---:|-----------:|\n";
     private static final String PIPE = " | ";
     private static final String PIPE_NEWLINE = " |\n";
-
-    private final StringBuilder stringBuilder = new StringBuilder();
-    private final Map<String, String> metrics = new LinkedHashMap<>();
-    private final List<String> requestedResources = new ArrayList<>();
-    private final List<String> responseCodes = new ArrayList<>();
-    private final List<String> requestMethods = new ArrayList<>();
-
-    @Override
-    public void addFilenames(Set<String> filenames) {
-        String formattedFilenames = filenames.stream()
-            .map(filename -> "`" + filename + "`")
-            .collect(Collectors.joining(", "));
-        metrics.put("Файл(-ы)", formattedFilenames);
-    }
-
-    @Override
-    public void addStartDate(String startDate) {
-        metrics.put("Начальная дата", startDate != null ? startDate : "-");
-    }
-
-    @Override
-    public void addEndDate(String endDate) {
-        metrics.put("Конечная дата", endDate != null ? endDate : "-");
-    }
-
-    @Override
-    public void addRequestsCount(int requestsCount) {
-        metrics.put("Количество запросов", String.valueOf(requestsCount));
-    }
-
-    @Override
-    public void addUniqueIpsCount(long uniqueIpsCount) {
-        metrics.put("Количество уникальных IP", String.valueOf(uniqueIpsCount));
-    }
-
-    @Override
-    public void addAverageResponsesSize(Double averageResponsesSize) {
-        metrics.put("Средний размер ответа", averageResponsesSize + "b");
-    }
-
-    @Override
-    public void addResponsePercentile(Double responsePercentile) {
-        metrics.put("95p размера ответа", responsePercentile + "b");
-    }
 
     @Override
     public void addRequestedResourcesStatistics(Map<String, Long> statistics) {
@@ -107,7 +59,7 @@ public class MarkdownReportFormatBuilder extends AbstractReportFormatBuilder imp
         if (!content.isEmpty()) {
             stringBuilder.append("\n#### ").append(title).append("\n\n");
             content.forEach(stringBuilder::append);
-            stringBuilder.append("\n");
+            stringBuilder.append('\n');
         }
     }
 }

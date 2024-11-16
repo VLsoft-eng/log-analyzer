@@ -1,6 +1,11 @@
 package backend.academy.reportBuilders.abstractions;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public abstract class AbstractReportFormatBuilder {
     protected static final Map<Integer, String> HTTP_STATUS_DESCRIPTIONS = Map.<Integer, String>ofEntries(
@@ -67,4 +72,41 @@ public abstract class AbstractReportFormatBuilder {
         Map.entry(510, "Not Extended"),
         Map.entry(511, "Network Authentication Required")
     );
+
+    protected final StringBuilder stringBuilder = new StringBuilder();
+    protected final Map<String, String> metrics = new LinkedHashMap<>();
+    protected final List<String> requestedResources = new ArrayList<>();
+    protected final List<String> responseCodes = new ArrayList<>();
+    protected final List<String> requestMethods = new ArrayList<>();
+
+    public void addFilenames(Set<String> filenames) {
+        String formattedFilenames = filenames.stream()
+            .map(filename -> "`" + filename + "`")
+            .collect(Collectors.joining(", "));
+        metrics.put("Файл(-ы)", formattedFilenames);
+    }
+
+    public void addStartDate(String startDate) {
+        metrics.put("Начальная дата", startDate != null ? startDate : "-");
+    }
+
+    public void addEndDate(String endDate) {
+        metrics.put("Конечная дата", endDate != null ? endDate : "-");
+    }
+
+    public void addRequestsCount(int requestsCount) {
+        metrics.put("Количество запросов", String.valueOf(requestsCount));
+    }
+
+    public void addUniqueIpsCount(long uniqueIpsCount) {
+        metrics.put("Количество уникальных IP", String.valueOf(uniqueIpsCount));
+    }
+
+    public void addAverageResponsesSize(Double averageResponsesSize) {
+        metrics.put("Средний размер ответа", averageResponsesSize + "b");
+    }
+
+    public void addResponsePercentile(Double responsePercentile) {
+        metrics.put("95p размера ответа", responsePercentile + "b");
+    }
 }

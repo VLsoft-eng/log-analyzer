@@ -21,7 +21,7 @@ public class MarkdownReportFormatBuilderTest {
     @DisplayName("Add filenames into builder test")
     @Test
     public void addFilenamesTest() {
-        Set<String> filenames = new LinkedHashSet<String>();
+        Set<String> filenames = new LinkedHashSet<>();
         filenames.add("debug.log");
         filenames.add("error.log");
         filenames.add("access.log");
@@ -65,7 +65,7 @@ public class MarkdownReportFormatBuilderTest {
     @DisplayName("Full report generating test")
     @Test
     public void fullReportGeneratingTest() {
-        Set<String> filenames = new LinkedHashSet<String>();
+        Set<String> filenames = new LinkedHashSet<>();
         filenames.add("debug.log");
         filenames.add("error.log");
         filenames.add("access.log");
@@ -126,7 +126,7 @@ public class MarkdownReportFormatBuilderTest {
         assertThat(report).contains("**Количество уникальных IP** | 250");
     }
 
-    @DisplayName("Add requested resources statistics into builder test ")
+    @DisplayName("Add requested resources statistics into builder test")
     @Test
     public void addRequestedResourcesStatisticsTest() {
         Map<String, Long> resourcesStatistics = Map.of(
@@ -178,37 +178,5 @@ public class MarkdownReportFormatBuilderTest {
             .contains("| GET | 7000 |")
             .contains("| POST | 2000 |")
             .contains("| DELETE | 1000 |");
-    }
-
-    @DisplayName("Full report build test")
-    @Test
-    public void fullReportBuildTest() {
-        Map<Integer, Long> responseCodesStatistics = Map.of(
-            200, 8000L,
-            404, 1000L
-        );
-        Map<String, Long> resourcesStatistics = Map.of(
-            "/index.html", 5000L,
-            "/about.html", 2000L
-        );
-        builder.addFilenames(Set.of("access.log"));
-        builder.addStartDate("31.08.2024");
-        builder.addEndDate("01.09.2024");
-        builder.addRequestsCount(10000);
-        builder.addUniqueIpsCount(250L);
-        builder.addRequestedResourcesStatistics(resourcesStatistics);
-        builder.addResponsesCodesStatistics(responseCodesStatistics);
-
-        String report = builder.buildReport();
-
-        assertThat(report).contains("**Файл(-ы)** | `access.log`")
-            .contains("**Начальная дата** | 31.08.2024")
-            .contains("**Конечная дата** | 01.09.2024")
-            .contains("**Количество запросов** | 10000")
-            .contains("**Количество уникальных IP** | 250")
-            .contains("| /index.html | 5000 |")
-            .contains("| /about.html | 2000 |")
-            .contains("| 200 | OK | 8000 |")
-            .contains("| 404 | Not Found | 1000 |");
     }
 }
