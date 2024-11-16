@@ -52,18 +52,18 @@ public class AsciiDocReportFormatBuilder extends AbstractReportFormatBuilder imp
                 .append('\n'));
         stringBuilder.append(RESPONSE_CODE_TABLE_HEADER);
 
-        appendSection(stringBuilder, "Запрашиваемые ресурсы", requestedResources);
-        appendSection(stringBuilder, "Коды ответа", responseCodes);
-        appendSection(stringBuilder, "Методы запросов", requestMethods);
+        appendSection(MOST_REQUESTED_RESOURCES, requestedResources);
+        appendSection(MOST_RESPONSES_CODES, responseCodes);
+        appendSection(MOST_REQUESTS_METHODS, requestMethods);
 
         return stringBuilder.toString();
     }
 
-    private void appendSection(StringBuilder builder, String title, List<String> content) {
+    private void appendSection(String title, List<String> content) {
         if (!content.isEmpty()) {
-            builder.append("\n== ").append(title).append("\n\n");
-            content.forEach(builder::append);
-            builder.append(PIPE_TABLE_SEPARATOR);
+            stringBuilder.append("\n== ").append(title).append("\n\n");
+            content.forEach(stringBuilder::append);
+            stringBuilder.append(PIPE_TABLE_SEPARATOR);
         }
     }
 }

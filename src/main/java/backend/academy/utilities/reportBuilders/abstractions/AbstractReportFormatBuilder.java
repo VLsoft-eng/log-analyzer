@@ -72,6 +72,9 @@ public abstract class AbstractReportFormatBuilder {
         Map.entry(510, "Not Extended"),
         Map.entry(511, "Network Authentication Required")
     );
+    protected static final String MOST_REQUESTED_RESOURCES = "Самые частые запрашиваемые ресурсы";
+    protected static final String MOST_RESPONSES_CODES = "Самые частые коды ответа";
+    protected static final String MOST_REQUESTS_METHODS = "Самые частые методы запроса";
 
     protected final StringBuilder stringBuilder = new StringBuilder();
     protected final Map<String, String> metrics = new LinkedHashMap<>();

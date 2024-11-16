@@ -48,9 +48,9 @@ public class MarkdownReportFormatBuilder extends AbstractReportFormatBuilder imp
                 .append(value)
                 .append(PIPE_NEWLINE));
 
-        appendSection("Запрашиваемые ресурсы", requestedResources);
-        appendSection("Коды ответа", responseCodes);
-        appendSection("Методы запросов", requestMethods);
+        appendSection(MOST_REQUESTED_RESOURCES, requestedResources);
+        appendSection(MOST_RESPONSES_CODES, responseCodes);
+        appendSection(MOST_REQUESTS_METHODS, requestMethods);
 
         return stringBuilder.toString();
     }
