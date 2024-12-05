@@ -19,7 +19,7 @@ public class Main {
             return;
         }
 
-        LogProcessingManager logProcessingManager = new LogProcessingManager(System.out);
-        logProcessingManager.process(params);
+        LogAnalyzerFacade logAnalyzerFacade = new LogAnalyzerFacade(System.out);
+        logAnalyzerFacade.analyze(params);
     }
 }
